@@ -76,7 +76,7 @@ else
   }
 
   if nix_version_greater_or_equal "2.4"; then
-    nix --extra-experimental-features 'nix-command flakes' shell "${NIXPKGS}#${attr}" -c "${argv0}" "$@"
+    nix-shell -p "${attr}" --command "${argv0} ${*}"
   else
     nix run "nixpkgs.${attr}" -c "${argv0}" "$@"
   fi
